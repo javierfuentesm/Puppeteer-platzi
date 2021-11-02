@@ -5,17 +5,21 @@ describe('Mi primer test de puppeteer', () => {
 		const browser = await puppeteer.launch({
 			headless: false,
 			defaultViewport: null,
+			args: ['--no-sandbox', '--disable-dev-shm-usage', '--enable-features=NetworkService'],
+			ignoreHTTPSErrors: true,
+			dumpio: false,
 		})
 		const page = await browser.newPage()
-		await page.goto('http://automationpractice.com/index.php')
+
+		await page.goto('https://yahoo.com/', { waitUntil: 'networkidle2' })
 		//Espera explicita
-		// await page.waitForTimeout(5000)
+		await page.waitForTimeout(5000)
 		await page.waitForSelector('img')
 		// Recarga la pagina
 		await page.reload()
 		await page.waitForSelector('img')
 		//Navegar a otro sitio
-		await page.goto('https://www.platzi.com/')
+		await page.goto('https://www.platzi.com/', { waitUntil: 'networkidle2' })
 		await page.waitForSelector(
 			'#home-public > div > div.Header-v2.Header-v2-content.is-dark-header > div.Logo > div > a > div > figure.LogoHeader-name > img'
 		)
