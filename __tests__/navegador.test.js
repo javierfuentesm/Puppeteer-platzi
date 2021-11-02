@@ -4,18 +4,44 @@ describe('Mi primer test de puppeteer', () => {
 	it('Debe abrir y cerrar el navegador el navegador', async () => {
 		const browser = await puppeteer.launch({
 			headless: false,
-			slowMo: 0,
-			devtools: true,
-			// defaultViewport: {
-			// 	width: 2100,
-			// 	height: 1080,
-			// },
-			args: ['--window-size=1920,1080'],
 			defaultViewport: null,
 		})
 		const page = await browser.newPage()
 		await page.goto('http://automationpractice.com/index.php')
-		await page.waitForSelector('h1')
+		//Espera explicita
+		// await page.waitForTimeout(5000)
+		await page.waitForSelector('img')
+		// Recarga la pagina
+		await page.reload()
+		await page.waitForSelector('img')
+		//Navegar a otro sitio
+		await page.goto('https://www.platzi.com/')
+		await page.waitForSelector(
+			'#home-public > div > div.Header-v2.Header-v2-content.is-dark-header > div.Logo > div > a > div > figure.LogoHeader-name > img'
+		)
+		//Navegar hacia atras
+		await page.goBack()
+
+		await page.waitForSelector('img')
+
+		//Navegar hacia adelante
+		await page.goForward()
+		await page.waitForSelector(
+			'#home-public > div > div.Header-v2.Header-v2-content.is-dark-header > div.Logo > div > a > div > figure.LogoHeader-name > img'
+		)
+
+		//Abrir otra pagina
+		const page2 = await browser.newPage()
+		await page2.goto('https://www.google.com/')
+
+		//esperar por texto en la pagina
+		await page2.waitForSelector('img')
+		await page.bringToFront()
+		await page.waitForSelector(
+			'#home-public > div > div.Header-v2.Header-v2-content.is-dark-header > div.Logo > div > a > div > figure.LogoHeader-name > img'
+		)
+		await page.waitForTimeout(5000)
+
 		await browser.close()
-	}, 30000)
+	}, 300000)
 })
