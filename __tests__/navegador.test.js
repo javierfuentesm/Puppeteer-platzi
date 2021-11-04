@@ -5,9 +5,6 @@ describe('Mi primer test de puppeteer', () => {
 		const browser = await puppeteer.launch({
 			headless: false,
 			defaultViewport: null,
-			args: ['--no-sandbox', '--disable-dev-shm-usage', '--enable-features=NetworkService'],
-			ignoreHTTPSErrors: true,
-			dumpio: false,
 		})
 		const page = await browser.newPage()
 

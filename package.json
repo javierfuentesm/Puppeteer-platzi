@@ -19,7 +19,7 @@
 	"homepage": "https://github.com/javierfuentesm/Puppeteer-platzi#readme",
 	"dependencies": {
 		"jest": "^27.3.1",
-		"puppeteer": "^10.4.0"
+		"puppeteer": "10.1.0"
 	},
 	"devDependencies": {
 		"prettier": "^2.4.1"
