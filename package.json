@@ -4,7 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "jest --forceExit"
+		"test": "jest --forceExit",
+		"test-devices": "jest --forceExit __tests__/emulacionDispositivos.test.js"
 	},
 	"repository": {
 		"type": "git",
