@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer')
 
 describe('IntetactuandoConElementos', () => {
-	it('Should open the browser ', async () => {
+	it('Tipos de espera', async () => {
 		const browser = await puppeteer.launch({
 			headless: false,
 			defaultViewport: null,
