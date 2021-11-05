@@ -1,13 +1,34 @@
 const puppeteer = require('puppeteer')
 
 describe('Extrayendo informacion', () => {
-	it('Extrayendo informacion del titulo y de la URL ', async () => {
-		const browser = await puppeteer.launch({
+	let browser
+	let page
+
+	beforeAll(async () => {
+		browser = await puppeteer.launch({
 			headless: false,
 			defaultViewport: null,
 		})
-		const page = await browser.newPage()
+		page = await browser.newPage()
+	})
 
+	afterAll(async () => {
+		await browser.close()
+	})
+
+	// beforeEach(async () => {
+	// 	browser = await puppeteer.launch({
+	// 		headless: false,
+	// 		defaultViewport: null,
+	// 	})
+	// 	page = await browser.newPage()
+	// })
+
+	// afterEach(async () => {
+	// 	await browser.close()
+	// })
+
+	it('Extrayendo informacion del titulo y de la URL ', async () => {
 		//extraer el titulo
 		await page.goto('https://www.google.com/')
 		const titulo = await page.title()
@@ -16,16 +37,9 @@ describe('Extrayendo informacion', () => {
 
 		console.log(titulo)
 		console.log(url)
-
-		await browser.close()
 	}, 50000)
 
 	it('Extrayendo informacion de un elemento', async () => {
-		const browser = await puppeteer.launch({
-			headless: false,
-			defaultViewport: null,
-		})
-		const page = await browser.newPage()
 		//extraer el nombre del boton de Empresas de Platzi.com con css selector
 		await page.goto('https://platzi.com/')
 		const nombreBoton = await page.$eval(
@@ -50,23 +64,14 @@ describe('Extrayendo informacion', () => {
 		const boton3 = await page.waitForXPath("//a[@class='ButtonLogin-cta']")
 		const name3 = await page.evaluate((name) => name.textContent, boton3)
 		console.log(name3)
-
-		await browser.close()
 	}, 50000)
 
 	it('Contar elementos de una pagina ', async () => {
-		const browser = await puppeteer.launch({
-			headless: false,
-			defaultViewport: null,
-		})
-		const page = await browser.newPage()
 		//extraer el nombre del boton de Empresas de Platzi.com con css selector
 		await page.goto('https://platzi.com/')
 
 		//Contar todas las img de la pagina
 		const images = await page.$$eval('img', (imagenes) => imagenes.length)
 		console.log(images)
-
-		await browser.close()
 	}, 50000)
 })
