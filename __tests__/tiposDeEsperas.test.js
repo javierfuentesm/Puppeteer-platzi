@@ -55,6 +55,7 @@ describe('IntetactuandoConElementos', () => {
 		//Ejemplo como configurar el tiempo de espera de timeout y explciar como se puede sobre ewscribir el valor por defecto
 		//el valor por defecto es 30000
 		page.setDefaultTimeout(10000)
+		page.setDefaultNavigationTimeout(10000)
 		await page.click('#closeSmallModal')
 		await page.waitForFunction(() => !document.querySelector('#xample-modal-sizes-title-sm'), {
 			timeout: 2000,
