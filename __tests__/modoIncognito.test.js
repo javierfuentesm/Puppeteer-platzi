@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer')
 
-describe('Emulacion de dispositivos', () => {
+describe('Modo incognito', () => {
 	let browser
 	let page
 
