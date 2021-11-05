@@ -8,7 +8,7 @@ describe('Mi primer test de puppeteer', () => {
 		})
 		const page = await browser.newPage()
 
-		await page.goto('https://yahoo.com/', { waitUntil: 'networkidle2' })
+		await page.goto('https://yahoo.com/')
 		//Espera explicita
 		await page.waitForTimeout(5000)
 		await page.waitForSelector('img')
@@ -16,7 +16,7 @@ describe('Mi primer test de puppeteer', () => {
 		await page.reload()
 		await page.waitForSelector('img')
 		//Navegar a otro sitio
-		await page.goto('https://www.platzi.com/', { waitUntil: 'networkidle2' })
+		await page.goto('https://www.platzi.com/')
 		await page.waitForSelector(
 			'#home-public > div > div.Header-v2.Header-v2-content.is-dark-header > div.Logo > div > a > div > figure.LogoHeader-name > img'
 		)
